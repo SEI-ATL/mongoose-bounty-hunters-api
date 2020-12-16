@@ -16,11 +16,14 @@ router.get('/:id', (req, res) => {
   .catch((error) => res.send({ error }))
 })
 
-router.post('/', (req, res) => {
+router.post('/', (req, res) => {  
   models.Bounty.create(req.body).then((bounty) => {
     res.status(201).json({ bounty })
   })
-  .catch((error) => res.send({ error }))
+  .catch((error) => {
+    console.log(error);
+    res.status(400)
+  })
 })
 
 router.put('/:id', (req, res) => {
